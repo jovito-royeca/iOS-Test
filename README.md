@@ -9,7 +9,7 @@ The application consists of 1 view  where results are grouped according to their
 ! For this view, there’s no specific design to implement but the list has to be easily readable for the
 user and should display the following :
 
-- 3 tabs each represents one search mode results (one for train , one for busses and one for flights) , in each results list a group of cells representing each a different travel option is presented , you are free to use whatever api you wish or design you think it fits best , but make sure to include for each journey the following data :
+3 tabs each represents one search mode results (one for train , one for busses and one for flights) , in each results list a group of cells representing each a different travel option is presented , you are free to use whatever api you wish or design you think it fits best , but make sure to include for each journey the following data :
 
  - logo
  - departure time
