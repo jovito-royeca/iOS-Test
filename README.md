@@ -47,4 +47,5 @@ A clean, well-animated, beautiful UI is very important. Please, let your imagina
 
 You may use the following design as a reference , however you are totally free to use your creativtiy and imagination
 
+![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
 
