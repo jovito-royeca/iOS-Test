@@ -19,7 +19,7 @@ And to get the lists, we have created you these 3 handy APIs:
 For image sizes, please keep it 63 for example http://cdn-goeuro.com/static_content/web/logos/63/megabus.png
 
 If there is no data available in the returned json file then try to find how you can make a proper calculation for it.
-Each list should be ordered by departure time. options to order through arrival time or duration should also be available. Tapping an offer button should display a "Offer details is not yet implemented!" message to the user.
+Each list should be ordered by departure time. options to order through arrival time or duration should also be available. Tapping an offer button should display a "Offer details is not yet implemented!" message to the user. Your app also should work offline, so try to cache in the data.
 
 Implement your solution as an app that we can try out. should be comptaible starting with iOS 7 and different iPhone screen sizes. Also send us the source code to your solution. We use GitHub, so it would be much better if you can upload it to a remote Github repositery.
 
@@ -30,7 +30,7 @@ Can you use Objective-C and SWIFT together? show us a sample.
 A clean, well-animated, beautiful UI is very important. Please, go wild and let your imagination fly here (hint, use more than standard animations).
 
 **Hint** 
-
 You may use the following design as a reference , however you are totally free to use your creativtiy and imagination
+https://github.com/goeuro/iOS-Test/blob/master/expected_output.png
 
-![Alt text](iOS-Test/expected_output.png?raw=true "Optional Title")
+We know this coding exercise is not the only important thing in life for you! Therefore, please don´t spend more than 2-3 hours on it and reduce the scope, if needed. :)
