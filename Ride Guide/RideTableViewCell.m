@@ -28,7 +28,18 @@
 }
 
 - (void) displayRide:(Ride*) ride {
-    [self.logoView sd_setImageWithURL:ride.logoURL];
+//    [self.logoView sd_setImageWithURL:ride.logoURL];
+    
+    // let's add some animation to the logo
+    void (^completed)(UIImage*, NSError*, SDImageCacheType, NSURL*) = ^void(UIImage* image, NSError* error, SDImageCacheType cacheType, NSURL* imageURL) {
+        [UIView transitionWithView:self.logoView duration:1.5
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^ {
+                            self.logoView.image = image;
+                        }
+                        completion: nil];
+    };
+    [self.logoView sd_setImageWithURL:ride.logoURL completed: completed];
     
     if (ride.departureTime) {
         self.scheduleLabel.text = [NSString stringWithFormat:@"%@ -", ride.departureTime];
