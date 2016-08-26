@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+@import MBProgressHUD;
 
 @interface MainViewController ()
 
@@ -151,6 +152,27 @@
         default:
             return indexPath;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return;
+    }
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Message"
+                                  message:@"Offer details are not yet implemented!"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
