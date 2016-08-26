@@ -54,7 +54,7 @@
         self.priceLabel.text = nil;
     }
     
-    NSTimeInterval duration = [ride duration];
+    NSTimeInterval duration = [ride.duration doubleValue];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.timeStyle = NSDateFormatterShortStyle;
     dateFormatter.dateFormat = @"k:mm"; // k = Hour in 1~24, mm = Minute

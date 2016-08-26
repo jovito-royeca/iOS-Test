@@ -36,7 +36,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ride Guide" id="NHT-Kh-S1q">
-                        <barButtonItem key="rightBarButtonItem" image="sort" id="JCM-rA-MBb">
+                        <barButtonItem key="leftBarButtonItem" image="sort" id="JCM-rA-MBb">
                             <connections>
                                 <action selector="sortAction:" destination="BYZ-38-t0r" id="Ycy-00-enF"/>
                             </connections>

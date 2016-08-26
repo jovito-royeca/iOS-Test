@@ -40,6 +40,24 @@ class Ride: NSManagedObject {
         arrivalTime = dictionary[Keys.ArrivalTime] as? String
         numberOfStops = dictionary[Keys.NumberOfStops] as? NSNumber
         
+        if let a = departureTime,
+            let b = arrivalTime {
+            
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.timeStyle = .ShortStyle
+            dateFormatter.dateFormat = "k:mm" // k = Hour in 1~24, mm = Minute
+            let timeZone = NSTimeZone(name: "UTC")
+            dateFormatter.timeZone = timeZone
+            if let dateA = dateFormatter.dateFromString(a),
+                let dateB = dateFormatter.dateFromString(b) {
+                
+                duration = dateB.timeIntervalSinceDate(dateA)
+            } else {
+                duration = 0;
+            }
+        }
+        
     }
     
     func logoURL() -> NSURL? {
@@ -49,25 +67,4 @@ class Ride: NSManagedObject {
             return nil
         }
     }
-    
-    func duration() -> NSTimeInterval {
-        if let a = departureTime,
-            let b = arrivalTime {
-        
-        
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.timeStyle = .ShortStyle
-            dateFormatter.dateFormat = "k:mm" // k = Hour in 1~24, mm = Minute
-            let timeZone = NSTimeZone(name: "UTC")
-            dateFormatter.timeZone = timeZone
-            if let dateA = dateFormatter.dateFromString(a),
-                let dateB = dateFormatter.dateFromString(b) {
-            
-                return dateB.timeIntervalSinceDate(dateA)
-            }
-        }
-        
-        return 0
-    }
-
 }

@@ -20,6 +20,7 @@ extension Ride {
     @NSManaged var departureTime: String?
     @NSManaged var arrivalTime: String?
     @NSManaged var numberOfStops: NSNumber?
+    @NSManaged var duration: NSNumber?
     @NSManaged var rideType: RideType?
 
 }

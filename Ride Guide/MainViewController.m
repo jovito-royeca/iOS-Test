@@ -13,6 +13,7 @@
 
 @property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong,nonatomic) NSFetchRequest *fetchRequest;
+@property (strong,nonatomic) NSSortDescriptor *sortDescriptor;
 
 @end
 
@@ -25,7 +26,8 @@
     
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"segmentedTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"RideTableViewCell" bundle:nil] forCellReuseIdentifier:@"rideTableViewCell"];
-    
+ 
+    self.sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"departureTime" ascending:YES];
     [self loadRides];
 }
 
@@ -41,7 +43,38 @@
 
 // MARK: Actions
 - (IBAction)sortAction:(UIBarButtonItem *)sender {
+    UIAlertController* alert =   [UIAlertController alertControllerWithTitle:@"Sort Options"
+                                                                     message:@"Sort the offers by"
+                                                              preferredStyle:UIAlertControllerStyleActionSheet];
     
+    UIAlertAction* departureAction = [UIAlertAction actionWithTitle:@"Departure Time"
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction * action) {
+                                                                self.sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"departureTime" ascending:YES];
+                                                                [self loadRides];
+                                                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                                            }];
+    
+    UIAlertAction* arrivalAction = [UIAlertAction actionWithTitle:@"Arrival Time"
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction * action) {
+                                                                self.sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"arrivalTime" ascending:YES];
+                                                                [self loadRides];
+                                                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                                            }];
+    
+    UIAlertAction* durationAction = [UIAlertAction actionWithTitle:@"Duration"
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction * action) {
+                                                                self.sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"duration" ascending:YES];
+                                                                [self loadRides];
+                                                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                                            }];
+    [alert addAction:departureAction];
+    [alert addAction:arrivalAction];
+    [alert addAction:durationAction];
+    alert.popoverPresentationController.sourceView = self.view;
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)segmentedAction:(UISegmentedControl *)sender {
@@ -70,7 +103,7 @@
         
         self.fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Ride"];
         self.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"rideType.name = %@", rideType];
-        self.fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"departureTime" ascending:YES]]; // must get from sort button
+        self.fetchRequest.sortDescriptors = @[self.sortDescriptor]; // must get from sort button
         
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
                                                                             managedObjectContext:[[CoreDataManager sharedInstance] mainObjectContext]
@@ -161,18 +194,16 @@
         return;
     }
     
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Message"
-                                  message:@"Offer details are not yet implemented!"
-                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Message"
+                                                                    message:@"Offer details are not yet implemented!"
+                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action) {
-                             [alert dismissViewControllerAnimated:YES completion:nil];
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * action) {
+                                                   [alert dismissViewControllerAnimated:YES completion:nil];
                              
-                         }];
+                                               }];
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
 }
