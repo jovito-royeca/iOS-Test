@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *logoView;
 @property (weak, nonatomic) IBOutlet UILabel *scheduleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stopsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 
 
