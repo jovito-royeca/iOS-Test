@@ -80,10 +80,12 @@
         self.fetchedResultsController.delegate = self;
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.tableView animated:YES];
             [self.tableView reloadData];
         });
     };
     
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     [[RideManager sharedInstance] downloadRideData:rideType completion: completion];
 }
 

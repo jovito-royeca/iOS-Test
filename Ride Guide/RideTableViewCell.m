@@ -22,7 +22,9 @@
     _rideOID = rideOID;
     
     Ride *ride = [[[CoreDataManager sharedInstance] mainObjectContext] objectWithID:rideOID];
-    [self displayRide:ride];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self displayRide:ride];
+    });
 }
 
 - (void) displayRide:(Ride*) ride {
